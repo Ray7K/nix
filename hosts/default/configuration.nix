@@ -8,7 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -76,106 +75,67 @@
       options = "--delete-older-than 30d";
     };
 
+    hardware = {
+      opengl.enable = true;
+    };
+
     services.displayManager.sddm = {
       enable = true;
       theme = "breeze";
       wayland = {
-      	enable = true;
+        enable = true;
       };
       autoLogin = {
-      	enable = true;
-	user = "ray";
+        enable = true;
+        user = "ray";
       };
     };
-    services.displayManager.defaultSession = "hyprland";
-
-    # programs.firefox.enable = true;
-    programs.zsh.enable = true;
-    programs.thunar.enable = true;
-
-    programs.thunar.plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-volman
-    ];
 
     programs.hyprland = {
       enable = true;
       xwayland.enable = true;
     };
 
+    services.displayManager.defaultSession = "hyprland";
+
+    programs.zsh.enable = true;
+
+    programs.thunar.enable = true;
+    programs.thunar.plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+    ];
+
+    xdg.portal.enable = true;
+    xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+
     environment.sessionVariables = {
       WLR_NO_HARDWARE_CURSORS = "1";
       NIXOS_OZONE_WL = "1";
     };
 
-    hardware = {
-      opengl.enable = true;
-    };
-
-    xdg.portal.enable = true;
-    xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
     environment.systemPackages = with pkgs; [
-      zsh
-      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      neovim
-      wget
-      kitty
-      ghostty
-      hyprland
-      waybar
-      rofi-wayland
-      fzf
-      ripgrep
-      fd
-      tmux
-      cargo
-      rustc
-      nix
-      git
-      lazygit
-      luarocks
-      zoxide
-      eza
-      unzip
+      vim
       gcc
       clang
       clang-tools
-      hyprpaper
-      yazi
+      cargo
+      rustc
+      rust-analyzer
+      git
+      nix
+      luarocks
       go
       nodejs
       python3
       zig
-      imagemagick
-      ghostscript
-      pandoc
-      ffmpeg
-      sqlite
-      pywal
-      delta
-      bat
-      wl-clipboard
-      xclip
-      copyq
-      jq
-      bat
-      librewolf
-      inputs.zen-browser.packages.${pkgs.system}.default
+      man-db
     ];
 
-  fonts.packages = with pkgs; [
-    nerd-fonts.fira-code
-    nerd-fonts.droid-sans-mono
-    nerd-fonts.code-new-roman
-  	noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-emoji
-    fira-code
-    jetbrains-mono
-  ];
+  # fonts.packages = with pkgs; [
+  # ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

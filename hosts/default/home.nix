@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -18,25 +18,49 @@
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
+  home.packages = with pkgs; [
+    neovim
+    hyprland
+    hyprpaper
+    waybar
+    rofi-wayland
+    kitty
+    ghostty
+    fzf
+    ripgrep
+    fd
+    tmux
+    zoxide
+    eza
+    lazygit
+    delta
+    bat
+    unzip
+    yazi
+    imagemagick
+    ghostscript
+    pandoc
+    ffmpeg
+    sqlite
+    pywal
+    wl-clipboard
+    xclip
+    copyq
+    jq
+    librewolf
+    inputs.zen-browser.packages.${pkgs.system}.default
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
+    nerd-fonts.fira-code
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.code-new-roman
+  	noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
+    fira-code
+    jetbrains-mono
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -74,7 +98,6 @@
     EDITOR = "nvim";
   };
 
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
   home.pointerCursor = {
@@ -108,6 +131,5 @@
     userName = "Ray7K";
     userEmail = "173786719+Ray7K@users.noreply.github.com";
   };
-
 
 }
