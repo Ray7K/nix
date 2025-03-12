@@ -23,6 +23,7 @@
         rust-analyzer
         libiconv
         nodejs
+        man-db
       ];
 
       environment.variables = {
