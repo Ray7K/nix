@@ -61,6 +61,13 @@
           "zen-browser"
           "yellowdot"
         ];
+
+        taps = [
+          {
+            name = "nikitabobko/homebrew-tap";
+          }
+        ];
+
         onActivation.cleanup = "zap";
         onActivation.upgrade = true;
         onActivation.autoUpdate = true;
@@ -90,15 +97,6 @@
         useGlobalPkgs = true;
         useUserPackages = true;
         users.raiyankataria = import ./home.nix;
-      };
-
-      nix-homebrew = {
-        enable = true;
-        enableRosetta = true;
-        user = "raiyankataria";
-        taps = {
-          "nikitabobko/homebrew-tap" = inputs.aerospace-tap;
-        };
       };
 
       system.activationScripts.applications.text = let

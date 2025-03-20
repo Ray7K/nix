@@ -14,13 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
-
-    aerospace-tap = {
-      url = "github:nikitabobko/homebrew-tap";
-      flake = false;
-    };
-
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,7 +36,6 @@
       modules = [
         ./hosts/macbook/configuration.nix
         inputs.home-manager.darwinModules.home-manager
-        inputs.nix-homebrew.darwinModules.nix-homebrew
       ];
     };
   };
