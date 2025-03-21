@@ -75,15 +75,15 @@
       options = "--delete-older-than 30d";
     };
 
-    hardware = {
-      opengl.enable = true;
-    };
+    hardware.graphics.enable = true;
 
-    services.displayManager.sddm = {
-      enable = true;
-      theme = "breeze";
-      wayland = {
+    services.displayManager = {
+      sddm = {
         enable = true;
+        theme = "breeze";
+        wayland = {
+          enable = true;
+        };
       };
       autoLogin = {
         enable = true;
