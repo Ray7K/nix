@@ -23,6 +23,7 @@
     vim
     neovim
     tmux
+    bat
     eza
     fzf
     ripgrep
