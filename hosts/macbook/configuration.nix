@@ -18,6 +18,7 @@
         mkalias
         luarocks
         clang
+        bear
         cargo
         rustc
         rust-analyzer
