@@ -21,6 +21,7 @@
         bear
         cargo
         rustc
+        rustup
         rust-analyzer
         libiconv
         nodejs
