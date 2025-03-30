@@ -62,6 +62,7 @@
           "todoist"
           "zen-browser"
           "yellowdot"
+          "jordanbaird-ice"
         ];
 
         taps = [
