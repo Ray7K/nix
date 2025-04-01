@@ -63,6 +63,7 @@
           "zen-browser"
           "yellowdot"
           "jordanbaird-ice"
+          "keepassxc"
         ];
 
         taps = [
