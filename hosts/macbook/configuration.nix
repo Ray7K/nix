@@ -64,6 +64,7 @@
           "yellowdot"
           "jordanbaird-ice"
           "keepassxc"
+          "calibre"
         ];
 
         taps = [

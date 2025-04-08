@@ -36,7 +36,6 @@
     zoxide
     oh-my-posh
     yazi
-    calibre
 
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
