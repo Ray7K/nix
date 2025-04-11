@@ -119,11 +119,12 @@
     environment.systemPackages = with pkgs; [
       vim
       gcc
+      gnumake
       clang
       clang-tools
       cargo
       rustc
-      rust-analyzer
+      rustup
       git
       nix
       luarocks
