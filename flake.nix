@@ -38,5 +38,14 @@
         inputs.home-manager.darwinModules.home-manager
       ];
     };
+
+    homeConfigurations.fedora = inputs.home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.aarch64-linux;
+      extraSpecialArgs = {inherit inputs;};
+      modules = [
+        ./hosts/fedora/home.nix
+      ];
+    };
+
   };
 }
