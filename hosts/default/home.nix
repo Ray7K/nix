@@ -56,7 +56,8 @@
     nerd-fonts.fira-code
     nerd-fonts.droid-sans-mono
     nerd-fonts.code-new-roman
-  	noto-fonts
+    nerd-fonts.jetbrains-mono
+    noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
     fira-code
