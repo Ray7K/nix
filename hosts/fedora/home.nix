@@ -23,6 +23,8 @@
   # environment.
   home.packages = with pkgs; [
     neovim
+    hyprpaper
+    waybar
     rofi-wayland
     kitty
     ripgrep
@@ -102,6 +104,11 @@
         add-zle-hook-widget line-init vi-cmd-mode
         '';
   };
+
+  # programs.ghostty = {
+  #   enable = true;
+  #   enableZshIntegration = true;
+  # };
 
   programs.fzf = {
     enable = true;
