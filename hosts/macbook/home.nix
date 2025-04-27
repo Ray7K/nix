@@ -39,6 +39,8 @@
     lazygit
     yazi
 
+    nixd
+
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
 
@@ -93,10 +95,10 @@
         '';
   };
 
-  # programs.ghostty = {
-  #   enable = true;
-  #   enableZshIntegration = true;
-  # };
+  programs.ghostty = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   programs.fzf = {
     enable = true;

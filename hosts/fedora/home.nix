@@ -46,6 +46,8 @@
     jq
     inputs.zen-browser.packages.${pkgs.system}.default
 
+    nixd
+
     nerd-fonts.fira-code
     nerd-fonts.droid-sans-mono
     nerd-fonts.code-new-roman
@@ -105,10 +107,10 @@
         '';
   };
 
-  # programs.ghostty = {
-  #   enable = true;
-  #   enableZshIntegration = true;
-  # };
+  programs.ghostty = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   programs.fzf = {
     enable = true;
