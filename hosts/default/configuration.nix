@@ -203,5 +203,6 @@
       users = {
           "ray" = import ./home.nix;
       };
+      backupFileExtension = "backup";
   };
 }
