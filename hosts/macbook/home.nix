@@ -142,6 +142,8 @@
       set-option -g set-titles on
       set-option -g set-titles-string "#{pane_title}"
 
+      set -g renumber-windows on
+
       bind-key h select-pane -L
       bind-key j select-pane -D
       bind-key k select-pane -U
