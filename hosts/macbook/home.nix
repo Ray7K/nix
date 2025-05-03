@@ -1,8 +1,12 @@
-{ config, pkgs, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}:
 
 {
-  imports = [
-  ];
+  imports = [ ../../modules/home-manager/dev.nix ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "raiyankataria";
@@ -28,18 +32,12 @@
   home.packages = with pkgs; [
     vim
     neovim
-    tmux
-    bat
     ripgrep
     btop
     htop
     fastfetch
     fd
-    delta
-    lazygit
     yazi
-
-    nixd
 
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
@@ -64,35 +62,34 @@
       ls = "eza";
     };
 
-    initContent =
-      ''
-        BLOCK='\e[2 q'
-        BEAM='\e[6 q'
+    initContent = ''
+      BLOCK='\e[2 q'
+      BEAM='\e[6 q'
 
-        function zle-line-init zle-keymap-select {
-          if [[ $KEYMAP == vicmd ]] || [[ $1 = 'block' ]]; then
-            echo -ne $BLOCK
-          elif [[ $KEYMAP == main ]] || [[ $KEYMAP == viins ]] ||
-               [[ $KEYMAP = '''''' ]] || [[ $1 = 'beam' ]]; then
-            echo -ne $BEAM
-          fi
-        }
+      function zle-line-init zle-keymap-select {
+        if [[ $KEYMAP == vicmd ]] || [[ $1 = 'block' ]]; then
+          echo -ne $BLOCK
+        elif [[ $KEYMAP == main ]] || [[ $KEYMAP == viins ]] ||
+             [[ $KEYMAP = '''''' ]] || [[ $1 = 'beam' ]]; then
+          echo -ne $BEAM
+        fi
+      }
 
-        export KEYTIMEOUT=1
+      export KEYTIMEOUT=1
 
-        zle -N zle-line-init
-        zle -N zle-keymap-select
+      zle -N zle-line-init
+      zle -N zle-keymap-select
 
-        bindkey -v
-        bindkey -s ^f "tmux-sessionizer\n"
-        bindkey -M vicmd '^e' edit-command-line
+      bindkey -v
+      bindkey -s ^f "tmux-sessionizer\n"
+      bindkey -M vicmd '^e' edit-command-line
 
-        bindkey '^H' backward-delete-char  # Backspace (often ^H) key
-        bindkey '^?' backward-delete-char  # For some terminals, backspace sends ^?
+      bindkey '^H' backward-delete-char  # Backspace (often ^H) key
+      bindkey '^?' backward-delete-char  # For some terminals, backspace sends ^?
 
-        autoload -Uz add-zle-hook-widget
-        add-zle-hook-widget line-init vi-cmd-mode
-        '';
+      autoload -Uz add-zle-hook-widget
+      add-zle-hook-widget line-init vi-cmd-mode
+    '';
   };
 
   programs.fzf = {
@@ -110,6 +107,62 @@
     git = true;
     icons = "auto";
     theme = "tokyonight";
+  };
+
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "tokyonight";
+    };
+  };
+
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      git = {
+        paging = {
+          colorArg = "always";
+          pager = "delta --dark --paging=never";
+        };
+      };
+    };
+  };
+
+  programs.tmux = {
+    enable = true;
+    terminal = "screen-256color";
+    historyLimit = 50000;
+    focusEvents = true;
+    mouse = true;
+    prefix = "C-s";
+    keyMode = "vi";
+    escapeTime = 0;
+    baseIndex = 1;
+    extraConfig = ''
+      set-option -g set-titles on
+      set-option -g set-titles-string "#{pane_title}"
+
+      bind-key h select-pane -L
+      bind-key j select-pane -D
+      bind-key k select-pane -U
+      bind-key l select-pane -R
+
+      bind-key -r f run-shell "tmux neww ~/.local/scripts/tmux-sessionizer"
+    '';
+    plugins = with pkgs; [
+      tmuxPlugins.yank
+      tmuxPlugins.vim-tmux-navigator
+      {
+        plugin = tmuxPlugins.tokyo-night-tmux;
+        extraConfig = ''
+          set -g @tokyo-night-tmux_theme 'night'
+          set -g @tokyo-night-tmux_transparent 1
+          set -g @tokyo-night-tmux_window_id_style fsquare
+          set -g @tokyo-night-tmux_pane_id_style hsquare
+          set -g @tokyo-night-tmux_zoom_id_style dsquare
+        '';
+      }
+    ];
   };
 
   programs.oh-my-posh = {
@@ -147,7 +200,7 @@
       # Console Title Template
       console_title_template = "{{ .Shell }} in {{ .Folder }}";
 
-      # Blocks (you may want to change this structure if it becomes more complex)
+      # Blocks
       blocks = [
         {
           type = "prompt";
@@ -252,37 +305,15 @@
 
   programs.fastfetch.enable = true;
   programs.fd.enable = true;
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
 
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
+  home.file = {
+    ".config/ghostty".source = "${inputs.dotfiles-mac}/ghostty";
+    ".config/nvim".source = "${inputs.dotfiles-mac}/nvim";
+    ".config/karabiner".source = "${inputs.dotfiles-mac}/karabiner";
+    ".aerospace.toml".source = "${inputs.dotfiles-mac}/.aerospace.toml";
+    ".config/bat/themes".source = "${inputs.dotfiles-mac}/bat/themes";
   };
 
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. These will be explicitly sourced when using a
-  # shell provided by Home Manager. If you don't want to manage your shell
-  # through Home Manager then you have to manually source 'hm-session-vars.sh'
-  # located at either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/ray/etc/profile.d/hm-session-vars.sh
-  #
   home.sessionVariables = {
     EDITOR = "nvim";
   };
@@ -294,5 +325,6 @@
     enable = true;
     userName = "Ray7K";
     userEmail = "173786719+Ray7K@users.noreply.github.com";
+    delta.enable = true;
   };
 }

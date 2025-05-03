@@ -1,8 +1,13 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
-    ../../modules/home-manager/hyprland.nix
+    ../../modules/home-manager/dev.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -22,16 +27,14 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    btop
+    htop
     neovim
     hyprpaper
     waybar
     rofi-wayland
     kitty
     ripgrep
-    tmux
-    lazygit
-    delta
-    bat
     unzip
     yazi
     imagemagick
@@ -45,8 +48,6 @@
     copyq
     jq
     inputs.zen-browser.packages.${pkgs.system}.default
-
-    nixd
 
     nerd-fonts.fira-code
     nerd-fonts.droid-sans-mono
@@ -76,35 +77,34 @@
       ls = "eza";
     };
 
-    initContent =
-      ''
-        BLOCK='\e[2 q'
-        BEAM='\e[6 q'
+    initContent = ''
+      BLOCK='\e[2 q'
+      BEAM='\e[6 q'
 
-        function zle-line-init zle-keymap-select {
-          if [[ $KEYMAP == vicmd ]] || [[ $1 = 'block' ]]; then
-            echo -ne $BLOCK
-          elif [[ $KEYMAP == main ]] || [[ $KEYMAP == viins ]] ||
-               [[ $KEYMAP = '''''' ]] || [[ $1 = 'beam' ]]; then
-            echo -ne $BEAM
-          fi
-        }
+      function zle-line-init zle-keymap-select {
+        if [[ $KEYMAP == vicmd ]] || [[ $1 = 'block' ]]; then
+          echo -ne $BLOCK
+        elif [[ $KEYMAP == main ]] || [[ $KEYMAP == viins ]] ||
+             [[ $KEYMAP = '''''' ]] || [[ $1 = 'beam' ]]; then
+          echo -ne $BEAM
+        fi
+      }
 
-        export KEYTIMEOUT=1
+      export KEYTIMEOUT=1
 
-        zle -N zle-line-init
-        zle -N zle-keymap-select
+      zle -N zle-line-init
+      zle -N zle-keymap-select
 
-        bindkey -v
-        bindkey -s ^f "tmux-sessionizer\n"
-        bindkey -M vicmd '^e' edit-command-line
+      bindkey -v
+      bindkey -s ^f "tmux-sessionizer\n"
+      bindkey -M vicmd '^e' edit-command-line
 
-        bindkey '^H' backward-delete-char  # Backspace (often ^H) key
-        bindkey '^?' backward-delete-char  # For some terminals, backspace sends ^?
+      bindkey '^H' backward-delete-char  # Backspace (often ^H) key
+      bindkey '^?' backward-delete-char  # For some terminals, backspace sends ^?
 
-        autoload -Uz add-zle-hook-widget
-        add-zle-hook-widget line-init vi-cmd-mode
-        '';
+      autoload -Uz add-zle-hook-widget
+      add-zle-hook-widget line-init vi-cmd-mode
+    '';
   };
 
   programs.fzf = {
@@ -122,6 +122,62 @@
     git = true;
     icons = "auto";
     theme = "tokyonight";
+  };
+
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "tokyonight";
+    };
+  };
+
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      git = {
+        paging = {
+          colorArg = "always";
+          pager = "delta --dark --paging=never";
+        };
+      };
+    };
+  };
+
+  programs.tmux = {
+    enable = true;
+    terminal = "screen-256color";
+    historyLimit = 50000;
+    focusEvents = true;
+    mouse = true;
+    prefix = "C-s";
+    keyMode = "vi";
+    escapeTime = 0;
+    baseIndex = 1;
+    extraConfig = ''
+      set-option -g set-titles on
+      set-option -g set-titles-string "#{pane_title}"
+
+      bind-key h select-pane -L
+      bind-key j select-pane -D
+      bind-key k select-pane -U
+      bind-key l select-pane -R
+
+      bind-key -r f run-shell "tmux neww ~/.local/scripts/tmux-sessionizer"
+    '';
+    plugins = with pkgs; [
+      tmuxPlugins.yank
+      tmuxPlugins.vim-tmux-navigator
+      {
+        plugin = tmuxPlugins.tokyo-night-tmux;
+        extraConfig = ''
+          set -g @tokyo-night-tmux_theme 'night'
+          set -g @tokyo-night-tmux_transparent 1
+          set -g @tokyo-night-tmux_window_id_style fsquare
+          set -g @tokyo-night-tmux_pane_id_style hsquare
+          set -g @tokyo-night-tmux_zoom_id_style dsquare
+        '';
+      }
+    ];
   };
 
   programs.oh-my-posh = {
@@ -332,6 +388,7 @@
     enable = true;
     userName = "Ray7K";
     userEmail = "173786719+Ray7K@users.noreply.github.com";
+    delta.enable = true;
   };
 
 }

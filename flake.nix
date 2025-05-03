@@ -14,38 +14,55 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    dotfiles-mac = {
+      url = "git+ssh://git@github.com/Ray7K/.dotfiles.git?ref=master";
+      flake = false;
+    };
+
+    dotfiles-linux = {
+      url = "git+ssh://git@github.com/Ray7K/.dotfiles.git?ref=linux";
+      flake = false;
+    };
+
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, ... }@inputs: {
-    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      system = "aarch64-linux";
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./hosts/default/configuration.nix
-        inputs.home-manager.nixosModules.default
-      ];
-    };
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nix-darwin,
+      ...
+    }@inputs:
+    {
+      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/default/configuration.nix
+          inputs.home-manager.nixosModules.default
+        ];
+      };
 
-    darwinConfigurations.macbook = nix-darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./hosts/macbook/configuration.nix
-        inputs.home-manager.darwinModules.home-manager
-      ];
-    };
+      darwinConfigurations.macbook = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/macbook/configuration.nix
+          inputs.home-manager.darwinModules.home-manager
+        ];
+      };
 
-    homeConfigurations.fedora = inputs.home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.aarch64-linux;
-      extraSpecialArgs = {inherit inputs;};
-      modules = [
-        ./hosts/fedora/home.nix
-      ];
-    };
+      homeConfigurations.fedora = inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.aarch64-linux;
+        extraSpecialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/fedora/home.nix
+        ];
+      };
 
-  };
+    };
 }
