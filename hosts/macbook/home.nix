@@ -114,11 +114,6 @@
 
       set -g renumber-windows on
 
-      bind-key h select-pane -L
-      bind-key j select-pane -D
-      bind-key k select-pane -U
-      bind-key l select-pane -R
-
       bind-key -r f run-shell "tmux neww ~/.local/scripts/tmux-sessionizer"
     '';
     plugins = with pkgs; [
