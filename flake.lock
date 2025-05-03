@@ -3,11 +3,11 @@
     "dotfiles-linux": {
       "flake": false,
       "locked": {
-        "lastModified": 1746269327,
-        "narHash": "sha256-aTfCWzkVCKJQ18HTt5ocypjQO+Bl5j6x3GXNwqYkngA=",
+        "lastModified": 1746286133,
+        "narHash": "sha256-KPM32N0t+ZeOL9vyDV1LqanS0KSbCfHmuhMNOH8nIOE=",
         "ref": "linux",
-        "rev": "40a037dac918daacd152093ffb7da54efa575cd8",
-        "revCount": 35,
+        "rev": "4eb59f1325c17f030b59ac282d82fb15809ac507",
+        "revCount": 36,
         "type": "git",
         "url": "ssh://git@github.com/Ray7K/.dotfiles.git"
       },
