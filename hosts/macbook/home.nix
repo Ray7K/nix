@@ -1,4 +1,5 @@
 {
+  lib,
   inputs,
   config,
   pkgs,
@@ -21,12 +22,6 @@
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
-  home.sessionPath = [
-    "${config.home.homeDirectory}/.local/bin"
-    "${config.home.homeDirectory}/.local/scripts"
-    "${config.home.homeDirectory}/.cargo/bin"
-  ];
-
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
@@ -41,14 +36,25 @@
 
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
   ];
+
+  home.file = {
+    ".config/ghostty".source = "${inputs.dotfiles-mac}/ghostty";
+    ".config/nvim".source = "${inputs.dotfiles-mac}/nvim";
+    ".config/karabiner".source = "${inputs.dotfiles-mac}/karabiner";
+    ".aerospace.toml".source = "${inputs.dotfiles-mac}/.aerospace.toml";
+    ".config/bat/themes".source = "${inputs.dotfiles-mac}/bat/themes";
+  };
+
+  home.sessionPath = [
+    "${config.home.homeDirectory}/.local/bin"
+    "${config.home.homeDirectory}/.local/scripts"
+    "${config.home.homeDirectory}/.cargo/bin"
+  ];
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
 
   home.shell.enableZshIntegration = true;
 
@@ -62,7 +68,7 @@
       ls = "eza";
     };
 
-    initContent = ''
+    initContent = lib.mkOrder 550 ''
       BLOCK='\e[2 q'
       BEAM='\e[6 q'
 
@@ -90,42 +96,6 @@
       autoload -Uz add-zle-hook-widget
       add-zle-hook-widget line-init vi-cmd-mode
     '';
-  };
-
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
-  programs.zoxide = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
-  programs.eza = {
-    enable = true;
-    git = true;
-    icons = "auto";
-    theme = "tokyonight";
-  };
-
-  programs.bat = {
-    enable = true;
-    config = {
-      theme = "tokyonight";
-    };
-  };
-
-  programs.lazygit = {
-    enable = true;
-    settings = {
-      git = {
-        paging = {
-          colorArg = "always";
-          pager = "delta --dark --paging=never";
-        };
-      };
-    };
   };
 
   programs.tmux = {
@@ -167,166 +137,59 @@
     ];
   };
 
-  programs.oh-my-posh = {
-    enable = true;
-    enableZshIntegration = true;
-    settings = {
-      schema = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json";
-
-      # Palette
-      palette = {
-        blue = "#7aa2f7";
-        closer = "p:os";
-        cyan = "#b4f9f8";
-        green = "#c3e88d";
-        os = "#a9b1d6";
-      };
-
-      # Secondary Prompt
-      secondary_prompt = {
-        template = "❯❯ ";
-        foreground = "#c0cef5";
-        background = "transparent";
-      };
-
-      # Transient Prompt
-      transient_prompt = {
-        template = "❯ ";
-        background = "transparent";
-        foreground_templates = [
-          "{{if gt .Code 0}}#cfcef5{{end}}"
-          "{{if eq .Code 0}}#c0cef5{{end}}"
-        ];
-      };
-
-      # Console Title Template
-      console_title_template = "{{ .Shell }} in {{ .Folder }}";
-
-      # Blocks
-      blocks = [
-        {
-          type = "prompt";
-          alignment = "left";
-          segments = [
-            {
-              properties = {
-                cache_duration = "none";
-              };
-              template = "{{.Icon}} ";
-              foreground = "p:os";
-              type = "os";
-              style = "plain";
-            }
-            {
-              properties = {
-                cache_duration = "none";
-              };
-              template = "{{ .UserName }} ";
-              foreground = "p:blue";
-              type = "session";
-              style = "plain";
-            }
-            {
-              properties = {
-                cache_duration = "none";
-                folder_icon = "  ";
-                home_icon = "~";
-                style = "agnoster_short";
-                max_depth = 2;
-              };
-              template = "{{ .Path }} ";
-              foreground = "p:cyan";
-              type = "path";
-              style = "plain";
-            }
-            {
-              properties = {
-                cache_duration = "none";
-                branch_icon = " ";
-                cherry_pick_icon = " ";
-                commit_icon = " ";
-                fetch_status = true;
-                fetch_upstream_icon = true;
-                merge_icon = " ";
-                no_commits_icon = " ";
-                rebase_icon = " ";
-                revert_icon = " ";
-                tag_icon = " ";
-              };
-              template = "{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}";
-              foreground = "p:green";
-              type = "git";
-              style = "plain";
-            }
-          ];
-          newline = true;
-        }
-        {
-          type = "rprompt";
-          overflow = "#6fb9e3";
-          segments = [
-            {
-              properties = {
-                cache_duration = "none";
-                threshold = 2500;
-              };
-              template = "{{ .FormattedMs }}";
-              foreground = "#cde4fa";
-              background = "transparent";
-              type = "executiontime";
-              style = "plain";
-            }
-          ];
-        }
-        {
-          type = "prompt";
-          alignment = "left";
-          segments = [
-            {
-              properties = {
-                cache_duration = "none";
-              };
-              template = "❯";
-              background = "transparent";
-              type = "text";
-              style = "plain";
-              foreground_templates = [
-                "{{if gt .Code 0}}#cfcef5{{end}}"
-                "{{if eq .Code 0}}#c0cef5{{end}}"
-              ];
-            }
-          ];
-          newline = true;
-        }
-      ];
-
-      version = 3;
-      final_space = true;
-    };
-  };
-
-  programs.fastfetch.enable = true;
-  programs.fd.enable = true;
-
-  home.file = {
-    ".config/ghostty".source = "${inputs.dotfiles-mac}/ghostty";
-    ".config/nvim".source = "${inputs.dotfiles-mac}/nvim";
-    ".config/karabiner".source = "${inputs.dotfiles-mac}/karabiner";
-    ".aerospace.toml".source = "${inputs.dotfiles-mac}/.aerospace.toml";
-    ".config/bat/themes".source = "${inputs.dotfiles-mac}/bat/themes";
-  };
-
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-
   programs.git = {
     enable = true;
     userName = "Ray7K";
     userEmail = "173786719+Ray7K@users.noreply.github.com";
     delta.enable = true;
   };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.eza = {
+    enable = true;
+    git = true;
+    icons = "auto";
+    theme = "tokyonight";
+  };
+
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "tokyonight";
+    };
+  };
+
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      git = {
+        paging = {
+          colorArg = "always";
+          pager = "delta --dark --paging=never";
+        };
+      };
+    };
+  };
+
+  programs.oh-my-posh = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = builtins.fromJSON (builtins.readFile "${inputs.dotfiles-mac}/oh-my-posh/config.json");
+  };
+
+  programs.fastfetch.enable = true;
+  programs.fd.enable = true;
+
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
+
 }
