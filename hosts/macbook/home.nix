@@ -221,7 +221,7 @@
               properties = {
                 cache_duration = "none";
               };
-              template = "{{ .UserName }}@{{ .HostName }} ";
+              template = "{{ .UserName }} ";
               foreground = "p:blue";
               type = "session";
               style = "plain";
@@ -242,18 +242,18 @@
             {
               properties = {
                 cache_duration = "none";
-                branch_icon = "  ";
-                cherry_pick_icon = "  ";
-                commit_icon = "  ";
+                branch_icon = " ";
+                cherry_pick_icon = " ";
+                commit_icon = " ";
                 fetch_status = true;
                 fetch_upstream_icon = true;
-                merge_icon = "  ";
-                no_commits_icon = "  ";
-                rebase_icon = "  ";
-                revert_icon = "  ";
-                tag_icon = "  ";
+                merge_icon = " ";
+                no_commits_icon = " ";
+                rebase_icon = " ";
+                revert_icon = " ";
+                tag_icon = " ";
               };
-              template = "{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}   {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }}   {{ .Staging.String }}{{ end }}";
+              template = "{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}   {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}";
               foreground = "p:green";
               type = "git";
               style = "plain";
