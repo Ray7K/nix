@@ -35,6 +35,7 @@
     libiconv
     nodejs
     man-db
+    pnpm
   ];
 
   environment.variables = {
