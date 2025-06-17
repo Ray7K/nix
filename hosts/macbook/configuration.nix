@@ -70,7 +70,7 @@
       "whatsapp"
       "arc"
       "todoist"
-      "zen-browser"
+      "zen"
       "yellowdot"
       "jordanbaird-ice"
       "keepassxc"
