@@ -20,11 +20,11 @@
     "dotfiles-mac": {
       "flake": false,
       "locked": {
-        "lastModified": 1746285206,
-        "narHash": "sha256-xqMgbR7L0WkUb6tHSKiV5zLek/LR2B+wItOZc/z61kA=",
+        "lastModified": 1751458626,
+        "narHash": "sha256-79ZbkxwO6GBQtUQwAJOXU/XH4CJsg0kjmplBGsB0NOA=",
         "ref": "master",
-        "rev": "28418c1407c1df8ff787d1398908e9b8a0262d89",
-        "revCount": 26,
+        "rev": "bafc43b1816b16403641dd98a68a29e9983e9452",
+        "revCount": 28,
         "type": "git",
         "url": "ssh://git@github.com/Ray7K/.dotfiles.git"
       },
