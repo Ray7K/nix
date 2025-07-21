@@ -68,7 +68,7 @@
       "firefox"
       "ghostty"
       "whatsapp"
-      "chrome"
+      "google-chrome"
       "todoist-app"
       "zen"
       "yellowdot"
