@@ -25,6 +25,9 @@
 
     # debuggers
     vscode-extensions.vadimcn.vscode-lldb
+
+    # other tools
+    gemini-cli
   ];
 
   home.sessionPath = [
