@@ -112,6 +112,8 @@
       set-option -g set-titles on
       set-option -g set-titles-string "#{pane_title}"
 
+      bind-key S send-prefix
+
       set -g renumber-windows on
 
       bind-key -r f run-shell "tmux neww ~/.local/scripts/tmux-sessionizer"
