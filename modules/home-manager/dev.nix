@@ -11,6 +11,7 @@
     basedpyright
     nixd
     lua-language-server
+    yaml-language-server
 
     # formatters
     rustfmt
