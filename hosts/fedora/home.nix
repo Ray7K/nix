@@ -184,9 +184,17 @@
 
   programs.git = {
     enable = true;
-    userName = "Ray7K";
-    userEmail = "173786719+Ray7K@users.noreply.github.com";
-    delta.enable = true;
+    settings = {
+      user = {
+        name = "Ray7K";
+        email = "173786719+Ray7K@users.noreply.github.com";
+      };
+    };
+  };
+
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
   };
 
   programs.fzf = {
