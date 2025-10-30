@@ -25,9 +25,13 @@
     eslint_d
 
     # debuggers
+    gdb
+    lldb
+    gef
     vscode-extensions.vadimcn.vscode-lldb
 
     # other tools
+    ghidra
     gemini-cli
   ];
 
