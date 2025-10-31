@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     # lsps
     clang
+    clang-tools
     rust-analyzer
     vscode-langservers-extracted
     typescript-language-server
