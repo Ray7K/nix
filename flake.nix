@@ -2,7 +2,9 @@
   description = "Nixos config flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-nixos.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
@@ -34,11 +36,13 @@
     {
       self,
       nixpkgs,
+      nixpkgs-nixos,
+      nixpkgs-stable,
       nix-darwin,
       ...
     }@inputs:
     {
-      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.default = nixpkgs-nixos.lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = { inherit inputs; };
         modules = [
