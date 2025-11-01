@@ -25,17 +25,8 @@
   environment.systemPackages = with pkgs; [
     wget
     mkalias
-    luarocks
-    clang
-    bear
-    cargo
-    rustc
-    rustup
-    rust-analyzer
     libiconv
-    nodejs
     man-db
-    pnpm
   ];
 
   environment.variables = {

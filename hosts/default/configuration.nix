@@ -2,26 +2,34 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-
   networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
@@ -40,7 +48,6 @@
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
-  
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -69,71 +76,61 @@
   #    ];
   #  };
 
-    nix.gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 30d";
-    };
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
 
-    hardware.graphics.enable = true;
+  hardware.graphics.enable = true;
 
-    services.displayManager = {
-      sddm = {
-        enable = true;
-        theme = "breeze";
-        wayland = {
-          enable = true;
-        };
-      };
-      autoLogin = {
-        enable = true;
-        user = "ray";
-      };
-    };
-
-    programs.hyprland = {
+  services.displayManager = {
+    sddm = {
       enable = true;
-      xwayland.enable = true;
+      theme = "breeze";
+      wayland = {
+        enable = true;
+      };
     };
-
-    services.displayManager.defaultSession = "hyprland";
-
-    programs.zsh.enable = true;
-
-    programs.thunar.enable = true;
-    programs.thunar.plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-volman
-    ];
-
-    xdg.portal.enable = true;
-    xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-
-    environment.sessionVariables = {
-      WLR_NO_HARDWARE_CURSORS = "1";
-      NIXOS_OZONE_WL = "1";
+    autoLogin = {
+      enable = true;
+      user = "ray";
     };
+  };
+
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+
+  services.displayManager.defaultSession = "hyprland";
+
+  programs.zsh.enable = true;
+
+  programs.thunar.enable = true;
+  programs.thunar.plugins = with pkgs.xfce; [
+    thunar-archive-plugin
+    thunar-volman
+  ];
+
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+
+  environment.sessionVariables = {
+    WLR_NO_HARDWARE_CURSORS = "1";
+    NIXOS_OZONE_WL = "1";
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-    environment.systemPackages = with pkgs; [
-      vim
-      gcc
-      gnumake
-      clang
-      clang-tools
-      cargo
-      rustc
-      rustup
-      git
-      nix
-      luarocks
-      go
-      nodejs
-      python3
-      zig
-      man-db
-    ];
+  environment.systemPackages = with pkgs; [
+    vim
+    git
+    nix
+    man-db
+    gnumake
+    gcc
+  ];
 
   # fonts.packages = with pkgs; [
   # ];
@@ -184,7 +181,7 @@
 
   # Keyboard layout
   services.xserver.xkb.layout = "us";
-  
+
   # Users
   users.users.ray = {
     isNormalUser = true;
@@ -199,10 +196,10 @@
   boot.loader.grub.device = "/dev/sda";
 
   home-manager = {
-      extraSpecialArgs = { inherit inputs; };
-      users = {
-          "ray" = import ./home.nix;
-      };
-      backupFileExtension = "backup";
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      "ray" = import ./home.nix;
+    };
+    backupFileExtension = "backup";
   };
 }
