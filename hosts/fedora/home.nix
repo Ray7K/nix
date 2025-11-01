@@ -33,7 +33,7 @@
     neovim
     hyprpaper
     waybar
-    rofi-wayland
+    rofi
     kitty
     ripgrep
     unzip
@@ -56,7 +56,7 @@
     nerd-fonts.jetbrains-mono
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     fira-code
     jetbrains-mono
   ];
