@@ -31,7 +31,6 @@
     hyprpaper
     waybar
     rofi
-    kitty
     ripgrep
     unzip
     yazi
@@ -197,6 +196,10 @@
   programs.ghostty = {
     enable = true;
     enableZshIntegration = true;
+  };
+
+  programs.kitty = {
+    enable = true;
   };
 
   programs.fzf = {

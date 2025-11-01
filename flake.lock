@@ -3,11 +3,11 @@
     "dotfiles-linux": {
       "flake": false,
       "locked": {
-        "lastModified": 1761978773,
-        "narHash": "sha256-F0jCV6p0+ZODOUfU5N1xLOZJy7jmZT970YvzqHtcJcQ=",
+        "lastModified": 1761985330,
+        "narHash": "sha256-fsEThn0YMZZBLp55Wz/Pu0UBqRqq8jKU0Ir3K98+Uso=",
         "ref": "linux",
-        "rev": "79149b6d128af6f3c92dcced4694a35db519a6cf",
-        "revCount": 36,
+        "rev": "265c884a10630557f1985bf916d5ff07fafd846e",
+        "revCount": 38,
         "type": "git",
         "url": "ssh://git@github.com/Ray7K/.dotfiles.git"
       },
@@ -76,11 +76,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1761672384,
-        "narHash": "sha256-o9KF3DJL7g7iYMZq9SWgfS1BFlNbsm6xplRjVlOCkXI=",
+        "lastModified": 1761907660,
+        "narHash": "sha256-kJ8lIZsiPOmbkJypG+B5sReDXSD1KGu2VEPNqhRa/ew=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "08dacfca559e1d7da38f3cf05f1f45ee9bfd213c",
+        "rev": "2fb006b87f04c4d3bdf08cfdbc7fab9c13d94a15",
         "type": "github"
       },
       "original": {
