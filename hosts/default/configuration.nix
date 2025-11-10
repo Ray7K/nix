@@ -82,7 +82,9 @@
     options = "--delete-older-than 30d";
   };
 
-  hardware.graphics.enable = true;
+  hardware.graphics = {
+    enable = true;
+  };
 
   services.displayManager = {
     sddm = {
@@ -120,6 +122,12 @@
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
   };
+
+  #  environment.variables = {
+  #    GALLIUM_DRIVER = "virgl";
+  #    # fallback hint for loader if needed
+  #    MESA_LOADER_DRIVER_OVERRIDE = "virgl";
+  #  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
