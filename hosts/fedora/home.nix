@@ -48,7 +48,7 @@
     xclip
     copyq
     jq
-    inputs.zen-browser.packages.${pkgs.system}.default
+    inputs.zen-browser-nixos.packages.${pkgs.system}.default
 
     nerd-fonts.fira-code
     nerd-fonts.droid-sans-mono

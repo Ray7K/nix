@@ -11,24 +11,29 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    home-manager = {
+    home-manager-unstable = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    dotfiles-mac = {
-      url = "git+ssh://git@github.com/Ray7K/.dotfiles.git?ref=master";
-      flake = false;
+    home-manager-nixos = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs-nixos";
+    };
+
+    zen-browser-unstable = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    zen-browser-nixos = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs-nixos";
     };
 
     dotfiles-linux = {
       url = "git+ssh://git@github.com/Ray7K/.dotfiles.git?ref=linux";
       flake = false;
-    };
-
-    zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -47,7 +52,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/default/configuration.nix
-          inputs.home-manager.nixosModules.default
+          inputs.home-manager-nixos.nixosModules.default
         ];
       };
 
@@ -56,11 +61,11 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/macbook/configuration.nix
-          inputs.home-manager.darwinModules.home-manager
+          inputs.home-manager-unstable.darwinModules.home-manager
         ];
       };
 
-      homeConfigurations.fedora = inputs.home-manager.lib.homeManagerConfiguration {
+      homeConfigurations.fedora = inputs.home-manager-unstable.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-linux;
         extraSpecialArgs = { inherit inputs; };
         modules = [

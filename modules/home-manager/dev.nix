@@ -66,7 +66,9 @@
 
       # other tools
       wireshark
-      wireshark-cli
+      valgrind
+      perf
+      flamegraph
     ];
 
   home.sessionPath = [
