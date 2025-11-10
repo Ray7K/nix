@@ -58,6 +58,6 @@
         };
       }
     );
-    environment.unfreePackages = [ "prl-tools" ];
+    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "prl-tools" ];
   };
 }
