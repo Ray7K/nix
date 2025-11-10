@@ -47,9 +47,7 @@
   };
 
   home.sessionPath = [
-    "${config.home.homeDirectory}/.local/bin"
-    "${config.home.homeDirectory}/.local/scripts"
-    "${config.home.homeDirectory}/.cargo/bin"
+    "/opt/homebrew/opt/llvm/bin/"
   ];
 
   home.sessionVariables = {
@@ -69,6 +67,8 @@
     };
 
     initContent = lib.mkOrder 550 ''
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+
       BLOCK='\e[2 q'
       BEAM='\e[6 q'
 

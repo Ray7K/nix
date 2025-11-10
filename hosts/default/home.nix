@@ -66,8 +66,6 @@
   };
 
   home.sessionPath = [
-    "${config.home.homeDirectory}/.local/bin"
-    "${config.home.homeDirectory}/.local/scripts"
   ];
 
   home.sessionVariables = {

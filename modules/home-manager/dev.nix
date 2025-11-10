@@ -10,7 +10,6 @@
       go
 
       # runtimes and package managers
-      python3
       nodejs
       bun
       pnpm
@@ -57,12 +56,23 @@
       gemini-cli
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
-      clang
-      clang-tools
+      # toolchains and compilers
       llvmPackages.llvm
+      llvmPackages.clang-tools
+      llvmPackages.clang
+
+      # runtimes and package managers
+      python3
+
+      # other tools
+      wireshark
+      wireshark-cli
     ];
 
   home.sessionPath = [
+    "${config.home.homeDirectory}/.local/bin"
+    "${config.home.homeDirectory}/.local/scripts"
+    "${config.home.homeDirectory}/.cargo/bin"
     "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter"
   ];
 }

@@ -6,11 +6,6 @@
 }:
 
 {
-  # imports =
-  #   [ # Include the results of the hardware scan.
-  #     inputs.home-manager.darwinModules.home-manager
-  #   ];
-
   nix.gc = {
     automatic = true;
     interval = {
@@ -30,7 +25,6 @@
   ];
 
   environment.variables = {
-    LIBRARY_PATH = "${pkgs.libiconv}/lib";
   };
 
   fonts.packages = with pkgs; [
@@ -50,6 +44,9 @@
     enable = true;
     brews = [
       "imagemagick"
+      "python3"
+      "llvm"
+      "wireshark"
     ];
     casks = [
       "iina"
@@ -66,6 +63,7 @@
       "jordanbaird-ice"
       "keepassxc"
       "calibre"
+      "wireshark-app"
     ];
 
     taps = [
