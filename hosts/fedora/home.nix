@@ -24,7 +24,10 @@
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
-  targets.genericLinux.enable = true;
+  targets.genericLinux = {
+    enable = true;
+    gpu.enable = false;
+  };
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
@@ -48,7 +51,7 @@
     xclip
     copyq
     jq
-    inputs.zen-browser-nixos.packages.${pkgs.system}.default
+    inputs.zen-browser-nixos.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     nerd-fonts.fira-code
     nerd-fonts.droid-sans-mono
