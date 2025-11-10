@@ -50,7 +50,14 @@
 
   hardware.parallels = {
     enable = true;
-    package = pkgs.prl-tools;
+    package = pkgs.prl-tools.overrideAttrs (
+      final: prev: {
+        version = "26.1.0-57287";
+        src = prev.src.overrideAttrs {
+          outputHash = "01h5c7wfj8a9r76vmzcn23v5ymw06j9kdd1irpjwmc16vvprlb9f";
+        };
+      }
+    );
+    environment.unfreePackages = [ "prl-tools" ];
   };
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "prl-tools" ];
 }
