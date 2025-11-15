@@ -35,6 +35,11 @@
       url = "git+ssh://git@github.com/Ray7K/.dotfiles.git?ref=linux";
       flake = false;
     };
+
+    dotfiles-mac = {
+      url = "git+ssh://git@github.com/Ray7K/.dotfiles.git";
+      flake = false;
+    };
   };
 
   outputs =
