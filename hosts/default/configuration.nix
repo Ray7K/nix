@@ -82,6 +82,8 @@
     options = "--delete-older-than 30d";
   };
 
+  nix.optimise.automatic = true;
+
   hardware.graphics = {
     enable = true;
   };
@@ -138,6 +140,7 @@
     man-db
     gnumake
     gcc
+    alacritty
   ];
 
   # fonts.packages = with pkgs; [
