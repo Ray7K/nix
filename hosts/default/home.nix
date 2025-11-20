@@ -63,6 +63,7 @@
     ".config/hypr".source = "${inputs.dotfiles-linux}/hypr";
     ".config/waybar".source = "${inputs.dotfiles-linux}/waybar";
     ".config/bat/themes".source = "${inputs.dotfiles-linux}/bat/themes";
+    ".local/scripts".source = "${inputs.dotfiles-linux}/scripts";
   };
 
   home.sessionPath = [

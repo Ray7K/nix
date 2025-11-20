@@ -44,6 +44,7 @@
     ".config/karabiner".source = "${inputs.dotfiles-mac}/karabiner";
     ".aerospace.toml".source = "${inputs.dotfiles-mac}/.aerospace.toml";
     ".config/bat/themes".source = "${inputs.dotfiles-mac}/bat/themes";
+    ".local/scripts".source = "${inputs.dotfiles-mac}/scripts";
   };
 
   home.sessionPath = [

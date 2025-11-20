@@ -33,6 +33,7 @@
       lua-language-server
       yaml-language-server
       taplo
+      texlab
 
       # formatters
       prettierd
@@ -40,6 +41,7 @@
       isort
       nixfmt-rfc-style
       stylua
+      tex-fmt
 
       # linters
       eslint_d
@@ -52,8 +54,10 @@
       vscode-extensions.vadimcn.vscode-lldb
 
       # other tools
+      (lib.hiPrio tree-sitter)
       ghidra
       gemini-cli
+      texliveFull
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       # toolchains and compilers
@@ -69,6 +73,7 @@
       valgrind
       perf
       flamegraph
+      zathura
     ];
 
   home.sessionPath = [
