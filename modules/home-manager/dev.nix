@@ -45,6 +45,7 @@
 
       # linters
       eslint_d
+      markdownlint-cli
 
       # debuggers
       lldb
