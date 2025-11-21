@@ -47,6 +47,7 @@
       "python3"
       "llvm"
       "wireshark"
+      "uv"
     ];
     casks = [
       "iina"
