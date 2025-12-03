@@ -3,11 +3,11 @@
     "dotfiles-linux": {
       "flake": false,
       "locked": {
-        "lastModified": 1764748704,
-        "narHash": "sha256-D0ePj3sQ58PpFLfNji3TXs6LpZLjjNiUiqBgexjJCms=",
+        "lastModified": 1764749650,
+        "narHash": "sha256-euwmNoN5uUgZEUS4epft01vA3UjzQ7Ud4QNSMbCNyhY=",
         "ref": "linux",
-        "rev": "69daeb881bde4456a87cd4dd62a017da150a7fd6",
-        "revCount": 44,
+        "rev": "d7bdf0d07838cc7b58d8c077f6349adb51574ba4",
+        "revCount": 45,
         "type": "git",
         "url": "ssh://git@github.com/Ray7K/.dotfiles.git"
       },
@@ -20,11 +20,11 @@
     "dotfiles-mac": {
       "flake": false,
       "locked": {
-        "lastModified": 1764748676,
-        "narHash": "sha256-+cq02m+E7JgpaRNoQP/AJPUsQOwJKgD7s4mUFIsI7eY=",
+        "lastModified": 1764749630,
+        "narHash": "sha256-wllKJDOPgndwEQx+LdYEgViOktpJG4s8IhDyK8ekpQQ=",
         "ref": "refs/heads/master",
-        "rev": "61c3e50482a888928006a03c95c0805877ef9ec4",
-        "revCount": 39,
+        "rev": "497809ce6b5c051cd103e0cfe38dd801b1dea329",
+        "revCount": 40,
         "type": "git",
         "url": "ssh://git@github.com/Ray7K/.dotfiles.git"
       },

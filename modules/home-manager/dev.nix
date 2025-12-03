@@ -59,6 +59,7 @@
       ghidra
       gemini-cli
       texliveFull
+      hyperfine
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       # toolchains and compilers
