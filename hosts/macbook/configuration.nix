@@ -66,6 +66,7 @@
       "calibre"
       "wireshark-app"
       "skim"
+      "tor-browser"
     ];
 
     taps = [
