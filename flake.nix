@@ -32,12 +32,12 @@
     };
 
     dotfiles-linux = {
-      url = "git+ssh://git@github.com/Ray7K/.dotfiles.git?ref=linux";
+      url = "github:Ray7K/.dotfiles/linux";
       flake = false;
     };
 
     dotfiles-mac = {
-      url = "git+ssh://git@github.com/Ray7K/.dotfiles.git";
+      url = "github:Ray7K/.dotfiles";
       flake = false;
     };
   };

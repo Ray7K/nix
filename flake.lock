@@ -5,16 +5,16 @@
       "locked": {
         "lastModified": 1766852637,
         "narHash": "sha256-ScP7g83vxLKCJXz6XvV4wkLkDyQsySrnZG+sBUGV7CA=",
-        "ref": "linux",
+        "owner": "Ray7K",
+        "repo": ".dotfiles",
         "rev": "5dbbc7d01d82985ab9b9f5f1a8d018172ff57f6f",
-        "revCount": 48,
-        "type": "git",
-        "url": "ssh://git@github.com/Ray7K/.dotfiles.git"
+        "type": "github"
       },
       "original": {
+        "owner": "Ray7K",
         "ref": "linux",
-        "type": "git",
-        "url": "ssh://git@github.com/Ray7K/.dotfiles.git"
+        "repo": ".dotfiles",
+        "type": "github"
       }
     },
     "dotfiles-mac": {
@@ -22,15 +22,15 @@
       "locked": {
         "lastModified": 1766851969,
         "narHash": "sha256-2FWIaJJwg9Vcl0gUAyfU77WnBLckl0lttHg+KahwTY4=",
-        "ref": "refs/heads/master",
+        "owner": "Ray7K",
+        "repo": ".dotfiles",
         "rev": "54e49268a1dbc0c28d41fcd04b35ca9ecaad2450",
-        "revCount": 43,
-        "type": "git",
-        "url": "ssh://git@github.com/Ray7K/.dotfiles.git"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/Ray7K/.dotfiles.git"
+        "owner": "Ray7K",
+        "repo": ".dotfiles",
+        "type": "github"
       }
     },
     "home-manager": {
