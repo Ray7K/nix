@@ -37,7 +37,6 @@
     hyprpaper
     waybar
     rofi
-    kitty
     ripgrep
     unzip
     yazi
@@ -66,6 +65,7 @@
 
   home.file = {
     ".config/ghostty".source = "${inputs.dotfiles-linux}/ghostty";
+    ".config/kitty".source = "${inputs.dotfiles-linux}/kitty";
     ".config/nvim".source = "${inputs.dotfiles-linux}/nvim";
     ".config/hypr".source = "${inputs.dotfiles-linux}/hypr";
     ".config/waybar".source = "${inputs.dotfiles-linux}/waybar";
@@ -182,6 +182,10 @@
         '';
       }
     ];
+  };
+
+  programs.kitty = {
+    enable = true;
   };
 
   programs.git = {

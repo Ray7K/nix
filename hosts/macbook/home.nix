@@ -40,6 +40,7 @@
 
   home.file = {
     ".config/ghostty".source = "${inputs.dotfiles-mac}/ghostty";
+    ".config/kitty".source = "${inputs.dotfiles-mac}/kitty";
     ".config/nvim".source = "${inputs.dotfiles-mac}/nvim";
     ".config/karabiner".source = "${inputs.dotfiles-mac}/karabiner";
     ".aerospace.toml".source = "${inputs.dotfiles-mac}/.aerospace.toml";
@@ -133,6 +134,10 @@
         '';
       }
     ];
+  };
+
+  programs.kitty = {
+    enable = true;
   };
 
   programs.git = {
