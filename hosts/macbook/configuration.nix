@@ -57,16 +57,17 @@
       "firefox"
       "ghostty"
       "whatsapp"
+      "discord"
       "google-chrome"
       "todoist-app"
       "zen"
-      "yellowdot"
       "jordanbaird-ice"
       "keepassxc"
       "calibre"
       "wireshark-app"
       "skim"
       "tor-browser"
+      "prismlauncher"
     ];
 
     taps = [

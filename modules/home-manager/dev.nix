@@ -39,7 +39,7 @@
       prettierd
       black
       isort
-      nixfmt-rfc-style
+      nixfmt
       stylua
       tex-fmt
 
@@ -49,8 +49,6 @@
 
       # debuggers
       lldb
-      gdb
-      gef
       delve
       vscode-extensions.vadimcn.vscode-lldb
 
@@ -58,6 +56,7 @@
       (lib.hiPrio tree-sitter)
       ghidra
       gemini-cli
+      codex
       texliveFull
       hyperfine
     ]
@@ -69,6 +68,10 @@
 
       # runtimes and package managers
       python3
+
+      # debuggers
+      gdb
+      gef
 
       # other tools
       wireshark
