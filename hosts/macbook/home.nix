@@ -6,6 +6,20 @@
   ...
 }:
 
+let
+  useLocalDotfiles = true;
+
+  localDotfiles = "${config.home.homeDirectory}/.dotfiles";
+
+  mkSource =
+    path:
+    if useLocalDotfiles then
+      config.lib.file.mkOutOfStoreSymlink "${localDotfiles}/${path}"
+    else
+      inputs.dotfiles-mac + "/${path}";
+
+  dotfilesReadPath = if useLocalDotfiles then localDotfiles else inputs.dotfiles-mac;
+in
 {
   imports = [ ../../modules/home-manager/dev.nix ];
   # Home Manager needs a bit of information about you and the paths it should
@@ -39,13 +53,13 @@
   ];
 
   home.file = {
-    ".config/ghostty".source = "${inputs.dotfiles-mac}/ghostty";
-    ".config/kitty".source = "${inputs.dotfiles-mac}/kitty";
-    ".config/nvim".source = "${inputs.dotfiles-mac}/nvim";
-    ".config/karabiner".source = "${inputs.dotfiles-mac}/karabiner";
-    ".aerospace.toml".source = "${inputs.dotfiles-mac}/.aerospace.toml";
-    ".config/bat/themes".source = "${inputs.dotfiles-mac}/bat/themes";
-    ".local/scripts".source = "${inputs.dotfiles-mac}/scripts";
+    ".config/ghostty".source = mkSource "ghostty";
+    ".config/kitty".source = mkSource "kitty";
+    ".config/nvim".source = mkSource "nvim";
+    ".config/karabiner".source = mkSource "karabiner";
+    ".aerospace.toml".source = mkSource ".aerospace.toml";
+    ".config/bat/themes".source = mkSource "bat/themes";
+    ".local/scripts".source = mkSource "scripts";
   };
 
   home.sessionPath = [
@@ -194,7 +208,7 @@
   programs.oh-my-posh = {
     enable = true;
     enableZshIntegration = true;
-    settings = builtins.fromJSON (builtins.readFile "${inputs.dotfiles-mac}/oh-my-posh/config.json");
+    settings = builtins.fromJSON (builtins.readFile (dotfilesReadPath + "/oh-my-posh/config.json"));
   };
 
   programs.fastfetch.enable = true;

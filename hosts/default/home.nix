@@ -6,6 +6,20 @@
   ...
 }:
 
+let
+  useLocalDotfiles = true;
+
+  localDotfiles = "${config.home.homeDirectory}/.dotfiles";
+
+  mkSource =
+    path:
+    if useLocalDotfiles then
+      config.lib.file.mkOutOfStoreSymlink "${localDotfiles}/${path}"
+    else
+      inputs.dotfiles-linux + "/${path}";
+
+  dotfilesReadPath = if useLocalDotfiles then localDotfiles else inputs.dotfiles-linux;
+in
 {
   imports = [
     ../../modules/home-manager/dev.nix
@@ -58,13 +72,13 @@
   ];
 
   home.file = {
-    ".config/ghostty".source = "${inputs.dotfiles-linux}/ghostty";
-    ".config/kitty".source = "${inputs.dotfiles-linux}/kitty";
-    ".config/nvim".source = "${inputs.dotfiles-linux}/nvim";
-    ".config/hypr".source = "${inputs.dotfiles-linux}/hypr";
-    ".config/waybar".source = "${inputs.dotfiles-linux}/waybar";
-    ".config/bat/themes".source = "${inputs.dotfiles-linux}/bat/themes";
-    ".local/scripts".source = "${inputs.dotfiles-linux}/scripts";
+    ".config/ghostty".source = mkSource "ghostty";
+    ".config/kitty".source = mkSource "kitty";
+    ".config/nvim".source = mkSource "nvim";
+    ".config/hypr".source = mkSource "hypr";
+    ".config/waybar".source = mkSource "waybar";
+    ".config/bat/themes".source = mkSource "bat/themes";
+    ".local/scripts".source = mkSource "scripts";
   };
 
   home.sessionPath = [
@@ -241,7 +255,7 @@
   programs.oh-my-posh = {
     enable = true;
     enableZshIntegration = true;
-    settings = builtins.fromJSON (builtins.readFile "${inputs.dotfiles-linux}/oh-my-posh/config.json");
+    settings = builtins.fromJSON (builtins.readFile (dotfilesReadPath + "/oh-my-posh/config.json"));
   };
 
   programs.fastfetch.enable = true;
