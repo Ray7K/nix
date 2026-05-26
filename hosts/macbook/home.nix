@@ -47,6 +47,7 @@ in
     fastfetch
     fd
     yazi
+    kitty
 
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
@@ -63,7 +64,6 @@ in
   };
 
   home.sessionPath = [
-    "/opt/homebrew/opt/llvm/bin/"
   ];
 
   home.sessionVariables = {
@@ -148,10 +148,6 @@ in
         '';
       }
     ];
-  };
-
-  programs.kitty = {
-    enable = true;
   };
 
   programs.git = {

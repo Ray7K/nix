@@ -5,6 +5,9 @@
     with pkgs;
     [
       # toolchains and compilers
+      llvmPackages.llvm
+      llvmPackages.clang-tools
+      llvmPackages.clang
       rustup
       zig
       go
@@ -61,11 +64,6 @@
       hyperfine
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
-      # toolchains and compilers
-      llvmPackages.llvm
-      llvmPackages.clang-tools
-      llvmPackages.clang
-
       # runtimes and package managers
       python3
 

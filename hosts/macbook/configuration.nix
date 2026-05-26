@@ -45,7 +45,6 @@
     brews = [
       "imagemagick"
       "python3"
-      "llvm"
       "wireshark"
       "uv"
     ];

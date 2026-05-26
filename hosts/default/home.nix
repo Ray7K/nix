@@ -39,6 +39,8 @@ in
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
+    kitty
+    ghostty
     btop
     htop
     neovim
@@ -205,15 +207,6 @@ in
   programs.delta = {
     enable = true;
     enableGitIntegration = true;
-  };
-
-  programs.ghostty = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
-  programs.kitty = {
-    enable = true;
   };
 
   programs.fzf = {
