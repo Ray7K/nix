@@ -48,6 +48,7 @@ in
     fd
     yazi
     kitty
+    pandoc
 
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
