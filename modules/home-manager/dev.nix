@@ -37,6 +37,7 @@
       yaml-language-server
       taplo
       texlab
+      marksman
 
       # formatters
       prettierd
@@ -62,6 +63,8 @@
       codex
       texliveFull
       hyperfine
+      mermaid-cli
+      ghostscript
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       # runtimes and package managers
@@ -77,6 +80,7 @@
       perf
       flamegraph
       zathura
+      chromium
     ];
 
   home.sessionPath = [

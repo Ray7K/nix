@@ -69,6 +69,7 @@ in
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    PUPPETEER_EXECUTABLE_PATH = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
   };
 
   home.shell.enableZshIntegration = true;

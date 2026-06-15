@@ -47,6 +47,8 @@
       "python3"
       "wireshark"
       "uv"
+      "pngpaste"
+      "syncthing"
     ];
     casks = [
       "iina"
