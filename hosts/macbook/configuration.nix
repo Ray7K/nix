@@ -68,7 +68,7 @@
       "calibre"
       "wireshark-app"
       "skim"
-      # "tor-browser"
+      "tor-browser"
       "prismlauncher"
     ];
 
