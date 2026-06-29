@@ -58,6 +58,7 @@
       "firefox"
       "ghostty"
       "whatsapp"
+      "obsidian"
       "discord"
       "google-chrome"
       "todoist-app"
