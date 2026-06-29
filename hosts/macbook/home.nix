@@ -48,6 +48,7 @@ in
     fd
     yazi
     kitty
+    ghostty-bin
     pandoc
 
     nerd-fonts.jetbrains-mono

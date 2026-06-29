@@ -56,7 +56,6 @@
       "nikitabobko/tap/aerospace"
       "leader-key"
       "firefox"
-      "ghostty"
       "whatsapp"
       "obsidian"
       "discord"
