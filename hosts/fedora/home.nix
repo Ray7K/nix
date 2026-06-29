@@ -84,6 +84,7 @@ in
     ".config/nvim".source = mkSource "nvim";
     ".config/hypr".source = mkSource "hypr";
     ".config/waybar".source = mkSource "waybar";
+    ".config/starship.toml".source = mkSource "starship/starship.toml";
     ".config/bat/themes".source = mkSource "bat/themes";
     ".local/scripts".source = mkSource "scripts";
   };
@@ -258,10 +259,9 @@ in
     };
   };
 
-  programs.oh-my-posh = {
+  programs.starship = {
     enable = true;
     enableZshIntegration = true;
-    settings = builtins.fromJSON (builtins.readFile (dotfilesReadPath + "/oh-my-posh/config.json"));
   };
 
   programs.fastfetch.enable = true;
