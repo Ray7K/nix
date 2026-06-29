@@ -53,7 +53,7 @@
     casks = [
       "iina"
       "karabiner-elements"
-      "aerospace"
+      "nikitabobko/tap/aerospace"
       "leader-key"
       "firefox"
       "ghostty"
@@ -68,14 +68,8 @@
       "calibre"
       "wireshark-app"
       "skim"
-      "tor-browser"
+      # "tor-browser"
       "prismlauncher"
-    ];
-
-    taps = [
-      {
-        name = "nikitabobko/homebrew-tap";
-      }
     ];
 
     onActivation.cleanup = "zap";
