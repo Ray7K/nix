@@ -120,7 +120,7 @@ in
 
   programs.tmux = {
     enable = true;
-    terminal = "screen-256color";
+    terminal = "tmux-256color";
     historyLimit = 50000;
     focusEvents = true;
     mouse = true;
