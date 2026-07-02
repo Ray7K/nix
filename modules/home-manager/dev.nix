@@ -59,7 +59,7 @@
       # other tools
       (lib.hiPrio tree-sitter)
       ghidra
-      gemini-cli
+      antigravity-cli
       codex
       texliveFull
       hyperfine
