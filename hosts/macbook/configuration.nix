@@ -54,6 +54,7 @@
       "iina"
       "karabiner-elements"
       "nikitabobko/tap/aerospace"
+      "progressive-downloader"
       "leader-key"
       "firefox"
       "whatsapp"
