@@ -51,24 +51,30 @@
       "syncthing"
     ];
     casks = [
-      "iina"
-      "karabiner-elements"
       "nikitabobko/tap/aerospace"
-      "progressive-downloader"
+      "karabiner-elements"
       "leader-key"
-      "firefox"
-      "whatsapp"
-      "obsidian"
-      "discord"
-      "google-chrome"
-      "todoist-app"
-      "zen"
+      "iina"
+      "finetune"
+      "progressive-downloader"
       "jordanbaird-ice"
+      "skim"
+      "wireshark-app"
+
+      "google-chrome"
+      "firefox"
+      "zen"
+      "tor-browser"
+
+      "whatsapp"
+      "discord"
+
       "keepassxc"
       "calibre"
-      "wireshark-app"
-      "skim"
-      "tor-browser"
+
+      "obsidian"
+      "todoist-app"
+
       "prismlauncher"
     ];
 
