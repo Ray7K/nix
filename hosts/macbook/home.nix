@@ -117,6 +117,10 @@ in
   };
 
   programs.tmux = {
+    package = pkgs.tmux.overrideAttrs (oldAttrs: {
+      configureFlags = (oldAttrs.configureFlags or [ ]) ++ [ "--enable-jemalloc" ];
+      buildInputs = (oldAttrs.buildInputs or [ ]) ++ [ pkgs.jemalloc ];
+    });
     enable = true;
     terminal = "tmux-256color";
     historyLimit = 50000;
