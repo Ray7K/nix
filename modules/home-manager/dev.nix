@@ -66,7 +66,7 @@
       mermaid-cli
       ghostscript
     ]
-    ++ lib.optionals pkgs.stdenv.isLinux [
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       # runtimes and package managers
       python3
 
