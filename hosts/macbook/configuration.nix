@@ -63,7 +63,6 @@
       "skim"
       "wireshark-app"
       "lulu"
-      "logitech-g-hub"
 
       "google-chrome"
       "firefox"
