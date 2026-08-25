@@ -22,6 +22,9 @@
     mkalias
     libiconv
     man-db
+
+    kitty
+    ghostty-bin
   ];
 
   environment.variables = {
@@ -57,9 +60,10 @@
       "iina"
       "finetune"
       "progressive-downloader"
-      "jordanbaird-ice"
       "skim"
       "wireshark-app"
+      "lulu"
+      "logitech-g-hub"
 
       "google-chrome"
       "firefox"

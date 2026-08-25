@@ -47,8 +47,6 @@ in
     fastfetch
     fd
     yazi
-    kitty
-    ghostty-bin
     pandoc
 
     nerd-fonts.jetbrains-mono
@@ -197,10 +195,10 @@ in
     enable = true;
     settings = {
       git = {
-        pagers = [
+        diffRenderers = [
           {
             colorArg = "always";
-            pager = ''
+            command = ''
               delta --dark \
                 --paging=never \
                 --line-numbers \
