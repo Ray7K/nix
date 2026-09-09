@@ -31,6 +31,8 @@
     "flakes"
   ];
 
+  nixpkgs.config.allowUnfree = true;
+
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
 
@@ -112,7 +114,7 @@
   programs.zsh.enable = true;
 
   programs.thunar.enable = true;
-  programs.thunar.plugins = with pkgs.xfce; [
+  programs.thunar.plugins = with pkgs; [
     thunar-archive-plugin
     thunar-volman
   ];
@@ -208,6 +210,8 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
+    useGlobalPkgs = true;
+    useUserPackages = true;
     users = {
       "ray" = import ./home.nix;
     };

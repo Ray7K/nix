@@ -52,12 +52,11 @@
     enable = true;
     package = pkgs.prl-tools.overrideAttrs (
       final: prev: {
-        version = "26.2.0-57329";
+        version = "27.0.1-58670";
         src = prev.src.overrideAttrs {
-          outputHash = "sha256-rvWzDIiLzm1CL3ccBOkqnR/XqE+n6P1JmUL1AZWGE30=";
+          outputHash = "sha256-ZchIQQ/FyzLmcL2ust1YAqlSsRZWJmDO3t3Ywxo39P0=";
         };
       }
     );
   };
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "prl-tools" ];
 }

@@ -105,9 +105,15 @@ in
 
   gtk = {
     enable = true;
-    theme = {
-      name = "Graphite-Dark";
-      package = pkgs.graphite-gtk-theme;
+
+    gtk4.theme = {
+      name = "WhiteSur-Dark";
+      package = pkgs.whitesur-gtk-theme;
+    };
+
+    gtk3.theme = {
+      name = "WhiteSur-Dark";
+      package = pkgs.whitesur-gtk-theme;
     };
 
     iconTheme = {
@@ -243,10 +249,10 @@ in
     enable = true;
     settings = {
       git = {
-        pagers = [
+        diffRenderers = [
           {
             colorArg = "always";
-            pager = ''
+            command = ''
               delta --dark \
                 --paging=never \
                 --line-numbers \
