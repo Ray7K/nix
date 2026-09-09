@@ -56,6 +56,7 @@
     casks = [
       "nikitabobko/tap/aerospace"
       "karabiner-elements"
+      "abue-ammar/tinycast/tinycast"
       "leader-key"
       "iina"
       "finetune"
@@ -77,6 +78,8 @@
 
       "obsidian"
       "todoist-app"
+
+      "cursor"
 
       "prismlauncher"
     ];
