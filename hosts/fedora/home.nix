@@ -65,7 +65,7 @@ in
     xclip
     copyq
     jq
-    inputs.zen-browser-nixos.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.zen-browser-unstable.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     nerd-fonts.fira-code
     nerd-fonts.droid-sans-mono
